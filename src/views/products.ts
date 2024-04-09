@@ -24,6 +24,7 @@ function getContent(products: Product[]): string {
       <div style="border:1px solid grey; margin-bottom:25px">
         <h3 style="margin-bottom:0">${product.name}</h3>
         <p style="margin-top:0">Price: ${product.pricePLN} PLN</p>
+        <a href="/products?id=${product.id}">check product details</a>
       </div>
     `;
   }

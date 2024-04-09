@@ -4,6 +4,7 @@ import { renderHome } from "./controllers/homeController";
 import { renderProducts } from "./controllers/productsController";
 import { renderSellers } from "./controllers/sellersController";
 import { render404 } from "./controllers/404Controller";
+import { renderProductDetails } from "./controllers/productController";
 
 // Create a server
 const server = createServer(
@@ -16,7 +17,7 @@ const server = createServer(
     console.log(myURL);
 
     // Route requests based on pathname and send respective response
-    routeRequest(myURL.pathname, request, response);
+    routeRequest(myURL, request, response);
   },
 );
 
@@ -29,21 +30,27 @@ server.listen(port, hostname, () => {
 });
 
 function routeRequest(
-  pathname: string,
+  url: URL,
   request: IncomingMessage,
   response: ServerResponse,
 ) {
-  switch (pathname) {
-    case "/":
+  const pathname = url.pathname;
+  const search = url.search;
+
+  switch (true) {
+    case pathname === "/":
       renderHome(request, response);
       break;
-    case "/categories":
+    case pathname === "/categories":
       renderCategories(request, response);
       break;
-    case "/products":
+    case pathname === "/products" && !!search:
+      renderProductDetails(request, response, url);
+      break;
+    case pathname === "/products":
       renderProducts(request, response);
       break;
-    case "/sellers":
+    case pathname === "/sellers":
       renderSellers(request, response);
       break;
     default:

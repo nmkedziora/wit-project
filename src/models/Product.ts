@@ -160,3 +160,9 @@ const sandwiches: Product[] = [
 export function getProducts(): Product[] {
   return [...drinks, ...pastries, ...sandwiches];
 }
+
+export function getProduct(id: ProductId): Product | null {
+  const products = getProducts();
+
+  return products.find((product) => product.id === id) ?? null;
+}

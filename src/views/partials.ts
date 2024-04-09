@@ -11,5 +11,5 @@ export function getPageHeading(heading: string): string {
 }
 
 export function getHomeLink(): string {
-  return `<a href="/">⬅️ get back to home page</a>`;
+  return `<a href="/">⬅ get back to home page</a>`;
 }
