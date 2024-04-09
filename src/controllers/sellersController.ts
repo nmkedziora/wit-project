@@ -1,17 +1,13 @@
+import { IncomingMessage, ServerResponse } from "node:http";
 import { getSellers } from "../models/Seller";
+import { getHtml } from "../views/sellers";
 
-export function getContent(): string {
-  let html = "";
-
+export function renderSellers(
+  request: IncomingMessage,
+  response: ServerResponse,
+) {
   const sellers = getSellers();
+  const html = getHtml(sellers);
 
-  for (let seller of sellers) {
-    html += `
-      <div style="border:1px solid grey; margin-bottom:25px">
-        <h3 style="margin-bottom:0">${seller.name}</h3>
-      </div>
-    `;
-  }
-
-  return html;
+  response.writeHead(200, { "Content-Type": "text/html" }).end(html);
 }

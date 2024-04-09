@@ -1,27 +1,32 @@
-import { IncomingMessage, ServerResponse } from "node:http";
 import {
   getHomeLink,
   getHtmlEnd,
   getHtmlStart,
   getPageHeading,
 } from "./partials";
-import { getContent } from "../controllers/productsController";
+import { Product } from "../models/Product";
 
-export function renderProducts(
-  request: IncomingMessage,
-  response: ServerResponse,
-) {
-  const htmlStart = getHtmlStart();
-  const htmlEnd = getHtmlEnd();
-  const heading = getPageHeading("Products");
-  const homeLink = getHomeLink();
-  const content = getContent();
+export function getHtml(products: Product[]): string {
+  return `
+  ${getHtmlStart()}
+  ${getPageHeading("Products")}
+  ${getHomeLink()}
+  ${getContent(products)}
+  ${getHtmlEnd()}
+`;
+}
 
-  response.writeHead(200, { "Content-Type": "text/html" });
-  response.write(htmlStart);
-  response.write(homeLink);
-  response.write(heading);
-  response.write(content);
-  response.write(htmlEnd);
-  response.end();
+function getContent(products: Product[]): string {
+  let content = "";
+
+  for (let product of products) {
+    content += `
+      <div style="border:1px solid grey; margin-bottom:25px">
+        <h3 style="margin-bottom:0">${product.name}</h3>
+        <p style="margin-top:0">Price: ${product.pricePLN} PLN</p>
+      </div>
+    `;
+  }
+
+  return content;
 }

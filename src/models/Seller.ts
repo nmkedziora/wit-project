@@ -1,9 +1,6 @@
-import { CategoryId } from "./Category";
-import { ProductId } from "./Product";
-
 export type SellerId = number;
 
-class Seller {
+export class Seller {
   id: SellerId;
   name: string;
 

@@ -1,23 +1,13 @@
-import { getCategory } from "../models/Category";
+import { IncomingMessage, ServerResponse } from "node:http";
 import { getProducts } from "../models/Product";
-import { getSeller } from "../models/Seller";
+import { getHtml } from "../views/products";
 
-export function getContent(): string {
-  let html = "";
-
+export function renderProducts(
+  request: IncomingMessage,
+  response: ServerResponse,
+) {
   const products = getProducts();
+  const html = getHtml(products);
 
-  for (let product of products) {
-    const category = getCategory(product.categoryId);
-    const seller = getSeller(product.sellerId);
-
-    html += `
-      <div style="border:1px solid grey; margin-bottom:25px">
-        <h3 style="margin-bottom:0">${product.name} (category: ${category?.name}) from ${seller?.name}</h3>
-        <p style="margin-top:0">Price: ${product.pricePLN} PLN</p>
-      </div>
-    `;
-  }
-
-  return html;
+  response.writeHead(200, { "Content-Type": "text/html" }).end(html);
 }

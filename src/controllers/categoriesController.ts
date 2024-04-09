@@ -1,17 +1,13 @@
+import { IncomingMessage, ServerResponse } from "node:http";
 import { getCategories } from "../models/Category";
+import { getHtml } from "../views/categories";
 
-export function getContent(): string {
-  let html = "";
-
+export function renderCategories(
+  request: IncomingMessage,
+  response: ServerResponse,
+) {
   const categories = getCategories();
+  const html = getHtml(categories);
 
-  for (let category of categories) {
-    html += `
-      <div style="border:1px solid grey; margin-bottom:25px">
-        <h3 style="margin-bottom:0">${category.name}</h3>
-      </div>
-    `;
-  }
-
-  return html;
+  response.writeHead(200, { "Content-Type": "text/html" }).end(html);
 }

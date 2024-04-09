@@ -1,9 +1,9 @@
 import { IncomingMessage, ServerResponse, createServer } from "node:http";
-import { renderHome } from "./views/home";
-import { render404 } from "./views/404";
-import { renderSellers } from "./views/sellers";
-import { renderCategories } from "./views/categories";
-import { renderProducts } from "./views/products";
+import { renderCategories } from "./controllers/categoriesController";
+import { renderHome } from "./controllers/homeController";
+import { renderProducts } from "./controllers/productsController";
+import { renderSellers } from "./controllers/sellersController";
+import { render404 } from "./controllers/404Controller";
 
 // Create a server
 const server = createServer(

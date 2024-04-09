@@ -1,18 +1,20 @@
-import { IncomingMessage, ServerResponse } from "http";
+import { getHtmlEnd, getHtmlStart, getPageHeading } from "./partials";
 
-export function render404(request: IncomingMessage, response: ServerResponse) {
-  const body = `
-  <html>
-    <body>
-      <h1>404 Page not found</h1>
-      <span>💩</span>
-      <p>
-        This page is not available. 
-        <a href="/">But home is.</a>
-      </p>
-    </body>
-  </html>
+export function getHtml(): string {
+  return `
+    ${getHtmlStart()}
+    ${getPageHeading("404 Page not found")}
+    ${getContent()}
+    ${getHtmlEnd()}
   `;
+}
 
-  response.writeHead(200, { "Content-Type": "text/html" }).end(body);
+function getContent(): string {
+  return `
+    <span>💩</span>
+    <p>
+      This page is not available. 
+      <a href="/">But home is.</a>
+    </p>
+  `;
 }

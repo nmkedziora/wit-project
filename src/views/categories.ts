@@ -1,27 +1,31 @@
-import { IncomingMessage, ServerResponse } from "node:http";
 import {
   getHomeLink,
   getHtmlEnd,
   getHtmlStart,
   getPageHeading,
 } from "./partials";
-import { getContent } from "../controllers/categoriesController";
+import { Category } from "../models/Category";
 
-export function renderCategories(
-  request: IncomingMessage,
-  response: ServerResponse,
-) {
-  const htmlStart = getHtmlStart();
-  const htmlEnd = getHtmlEnd();
-  const heading = getPageHeading("Categories");
-  const homeLink = getHomeLink();
-  const content = getContent();
+export function getHtml(categories: Category[]): string {
+  return `
+    ${getHtmlStart()}
+    ${getPageHeading("Categories")}
+    ${getHomeLink()}
+    ${getContent(categories)}
+    ${getHtmlEnd()}
+  `;
+}
 
-  response.writeHead(200, { "Content-Type": "text/html" });
-  response.write(htmlStart);
-  response.write(heading);
-  response.write(homeLink);
-  response.write(content);
-  response.write(htmlEnd);
-  response.end();
+function getContent(categories: Category[]): string {
+  let content = "";
+
+  for (let category of categories) {
+    content += `
+      <div style="border:1px solid grey; margin-bottom:25px">
+        <h3 style="margin-bottom:0">${category.name}</h3>
+      </div>
+    `;
+  }
+
+  return content;
 }

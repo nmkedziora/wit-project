@@ -1,27 +1,31 @@
-import { IncomingMessage, ServerResponse } from "node:http";
 import {
   getPageHeading,
   getHomeLink,
   getHtmlEnd,
   getHtmlStart,
 } from "./partials";
-import { getContent } from "../controllers/sellersController";
+import { Seller } from "../models/Seller";
 
-export function renderSellers(
-  request: IncomingMessage,
-  response: ServerResponse,
-) {
-  const htmlStart = getHtmlStart();
-  const htmlEnd = getHtmlEnd();
-  const heading = getPageHeading("Sellers");
-  const homeLink = getHomeLink();
-  const content = getContent();
+export function getHtml(sellers: Seller[]): string {
+  return `
+    ${getHtmlStart()}
+    ${getPageHeading("Sellers")}
+    ${getHomeLink()}
+    ${getContent(sellers)}
+    ${getHtmlEnd()}
+  `;
+}
 
-  response.writeHead(200, { "Content-Type": "text/html" });
-  response.write(htmlStart);
-  response.write(heading);
-  response.write(homeLink);
-  response.write(content);
-  response.write(htmlEnd);
-  response.end();
+export function getContent(sellers: Seller[]): string {
+  let content = "";
+
+  for (let seller of sellers) {
+    content += `
+      <div style="border:1px solid grey; margin-bottom:25px">
+        <h3 style="margin-bottom:0">${seller.name}</h3>
+      </div>
+    `;
+  }
+
+  return content;
 }
