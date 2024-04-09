@@ -1,9 +1,9 @@
 import { IncomingMessage, ServerResponse, createServer } from "node:http";
-import { renderHome } from "./home";
-import { render404 } from "./404";
-import { renderSellers } from "./sellers";
-import { renderCategories } from "./categories";
-import { renderProducts } from "./products";
+import { renderHome } from "./views/home";
+import { render404 } from "./views/404";
+import { renderSellers } from "./views/sellers";
+import { renderCategories } from "./views/categories";
+import { renderProducts } from "./views/products";
 
 // Create a server
 const server = createServer(
