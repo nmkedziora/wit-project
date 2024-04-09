@@ -2,6 +2,10 @@
 
 This Node.js x TypeScript repository is built upon the [LogRocket Blog post "How to set up TypeScript with Node.js and Express"](https://blog.logrocket.com/how-to-set-up-node-typescript-express/).
 
+## Note from the Author
+
+This project is not production-ready. It is intended for my personal educational purposes only. Please refrain from using this code in a production environment. Feel free to explore, experiment, and learn from the codebase.
+
 ## Prerequisites
 
 Make sure you have `Node.js`, `npx` and `yarn` installed.
