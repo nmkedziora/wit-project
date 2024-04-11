@@ -1,8 +1,15 @@
-import { getHtmlEnd, getHtmlStart, getPageHeading } from "./partials";
+import { User } from "../models/User";
+import {
+  getHtmlEnd,
+  getHtmlStart,
+  getPageHeader,
+  getPageHeading,
+} from "./partials";
 
-export function getHtml(): string {
+export function getHtml(user: User | undefined): string {
   return `
     ${getHtmlStart()}
+    ${getPageHeader(user)}
     ${getPageHeading("Marektplace homepage")}
     ${getContent()}
     ${getHtmlEnd()}

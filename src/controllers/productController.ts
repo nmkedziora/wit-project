@@ -2,8 +2,10 @@ import { IncomingMessage, ServerResponse } from "node:http";
 import { Product, ProductId, getProduct } from "../models/Product";
 import { getHtml } from "../views/product";
 import { render404 } from "./404Controller";
+import { RequestContext } from "../context";
 
 export function renderProductDetails(
+  context: RequestContext,
   request: IncomingMessage,
   response: ServerResponse,
   url: URL,
@@ -23,7 +25,9 @@ export function renderProductDetails(
     return;
   }
 
-  const html = getHtml(product);
+  const user = context.getUser();
+  const html = getHtml(user, product);
+
   response.writeHead(200, { "Content-Type": "text/html" }).end(html);
 }
 

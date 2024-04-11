@@ -2,13 +2,19 @@ import {
   getHomeLink,
   getHtmlEnd,
   getHtmlStart,
+  getPageHeader,
   getPageHeading,
 } from "./partials";
 import { Category } from "../models/Category";
+import { User } from "../models/User";
 
-export function getHtml(categories: Category[]): string {
+export function getHtml(
+  user: User | undefined,
+  categories: Category[],
+): string {
   return `
     ${getHtmlStart()}
+    ${getPageHeader(user)}
     ${getPageHeading("Categories")}
     ${getHomeLink()}
     ${getContent(categories)}

@@ -2,13 +2,16 @@ import {
   getHomeLink,
   getHtmlEnd,
   getHtmlStart,
+  getPageHeader,
   getPageHeading,
 } from "./partials";
 import { Product } from "../models/Product";
+import { User } from "../models/User";
 
-export function getHtml(product: Product): string {
+export function getHtml(user: User | undefined, product: Product): string {
   return `
   ${getHtmlStart()}
+  ${getPageHeader(user)}
   ${getPageHeading("Product details")}
   ${getHomeLink()}
   ${getContent(product)}
