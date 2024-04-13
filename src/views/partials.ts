@@ -1,7 +1,7 @@
 import { User } from "../models/User";
 
 export function getHtmlStart(): string {
-  return `<html><body>`;
+  return `<html><body style="font-size: 2rem">`;
 }
 
 export function getHtmlEnd(): string {
