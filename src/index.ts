@@ -5,8 +5,8 @@ import { handleRequest } from "./app";
 const server = createServer(handleRequest);
 
 // Start the server
-const hostname = "127.0.0.1";
-const port = 3000;
+const hostname = "0.0.0.0";
+const port = 8080;
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
