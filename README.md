@@ -6,6 +6,16 @@ This Node.js x TypeScript repository is built upon the [LogRocket Blog post "How
 
 This project is not production-ready. It is intended for my personal educational purposes only. Please refrain from using this code in a production environment. Feel free to explore, experiment, and learn from the codebase.
 
+## Figma low-fi wireframes
+
+Get a sneak peek into the project vision with low-fidelity wireframes, available on [Figma](https://www.figma.com/file/3kRV4coW8h9TENg7pgDFCe/WIT-Marketplace?type=design&node-id=883174-247&mode=design&t=f3g8xDEupM5RyhFL-0).
+
+The goal of the project wasn't to replicate the views exactly as designed in Figma.
+Due to time constraints and a strategic decision to prioritize backend development, database setup, and infrastructure/architecture topics,
+the focus was shifted away from the visual aspects of the app.
+
+Consequently, the final implementation diverges significantly from the Figma designs.
+
 ## Prerequisites
 
 Make sure you have `Node.js`, `npx` and `yarn` installed.
