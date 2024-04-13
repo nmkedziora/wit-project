@@ -28,3 +28,7 @@ export function getSessionCookie(request: IncomingMessage): string | undefined {
     }
   }
 }
+
+export function deleteSessionCookie() {
+  return `${SESSION_COOKIE}=; Max-Age=0; Expires: ${Date.now()}`;
+}

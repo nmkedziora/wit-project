@@ -3,9 +3,11 @@ import { User, UserId, getUser } from "./User";
 export type SessionId = string;
 
 export class Session {
+  id: SessionId;
   userId: UserId;
 
-  constructor(userId: number) {
+  constructor(id: SessionId, userId: number) {
+    this.id = id;
     this.userId = userId;
   }
 
@@ -31,7 +33,7 @@ export function createSession(userId: UserId): SessionId {
     * session management libraries.
   */
   const sessionId: SessionId = Math.floor(Math.random() * 10000).toString();
-  const session = new Session(userId);
+  const session = new Session(sessionId, userId);
 
   /* 
   Intentionally skipped checking session collision.
@@ -46,4 +48,8 @@ export function createSession(userId: UserId): SessionId {
 
 export function getSession(id: SessionId): Session | undefined {
   return sessions.get(id);
+}
+
+export function deleteSession(id: SessionId) {
+  sessions.delete(id);
 }

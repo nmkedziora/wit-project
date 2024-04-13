@@ -8,6 +8,7 @@ import { renderSellers } from "./controllers/sellersController";
 import { renderSignup, signup } from "./controllers/signupController";
 import { render404 } from "./controllers/404Controller";
 import { RequestContext } from "./context";
+import { logout } from "./controllers/logoutController";
 
 export function routeRequest(
   context: RequestContext,
@@ -42,6 +43,9 @@ function routeGetRequest(
       break;
     case pathname === "/login":
       renderLogin(context, request, response);
+      break;
+    case pathname === "/logout":
+      logout(context, request, response);
       break;
     case pathname === "/products" && !!search:
       renderProductDetails(context, request, response, url);

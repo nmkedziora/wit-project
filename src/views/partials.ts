@@ -13,7 +13,7 @@ export function getPageHeader(user?: User): string {
     return `
     <div style="background-color: lightgrey">
       <p style="margin: 0">Hello ${user.username}!</p>
-      <a href="/login">Log out</a>
+      <a href="/logout">Log out</a>
     </div>
   `;
   }
