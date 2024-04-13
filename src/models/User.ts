@@ -42,6 +42,20 @@ export function getUser(id: UserId): User | undefined {
   return users.find((user) => user.id === id);
 }
 
+export interface LoginCredentials {
+  username: string;
+  password: string;
+}
+
+export function findUserByCredentials({
+  username,
+  password,
+}: LoginCredentials): User | undefined {
+  return users.find(
+    (user: User) => user.username === username && user.password === password,
+  );
+}
+
 /*
 This is very naive implementation of ID generation.
 In prod-grade code, a more robust method should be used, such as

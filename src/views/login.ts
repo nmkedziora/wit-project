@@ -1,5 +1,6 @@
 import { User } from "../models/User";
 import {
+  getError,
   getHomeLink,
   getHtmlEnd,
   getHtmlStart,
@@ -7,13 +8,25 @@ import {
   getPageHeading,
 } from "./partials";
 
-export function getHtml(user: User | undefined): string {
+export function getHtml(user?: User | undefined): string {
   return `
     ${getHtmlStart()}
     ${getPageHeader(user)}
     ${getPageHeading("Log in")}
     ${getHomeLink()}
     ${user ? getLoggedInContent() : getContent()}
+    ${getHtmlEnd()}
+  `;
+}
+
+export function getErrorHtml(): string {
+  return `
+    ${getHtmlStart()}
+    ${getPageHeader()}
+    ${getPageHeading("Log in")}
+    ${getHomeLink()}
+    ${getContent()}
+    ${getError()}
     ${getHtmlEnd()}
   `;
 }
