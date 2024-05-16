@@ -1,0 +1,24 @@
+name: wit-project
+
+# This is just an example and is not intended for production use.
+
+services:
+  db:
+    # The newest MySQL image did not work with the --default-authentication-plugin option,
+    # hence mysql-server:8.0 is used.
+    # The default authentication plugin needs to be set to mysql_native_password
+    # because the npm package 'mysql' used in the Node.js app
+    # does not support the new MySQL authentication method.
+    image: mysql/mysql-server:8.0
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./src/db:/docker-entrypoint-initdb.d
+    environment:
+      # In a prod-grade setup, password should be passed using secrets management tools like:
+      # Docker secrets, AWS Secrets Manager,
+      # or environment variables. For example:
+      # MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_ROOT_PASSWORD: root

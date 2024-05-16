@@ -13,10 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/mysql": "^2.15.26",
     "@types/node": "^20.12.6",
     "nodemon": "^3.1.0",
     "prettier": "3.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
   }
 }
