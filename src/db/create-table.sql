@@ -1,0 +1,22 @@
+
+
+
+
+
+
+SHOW DATABASES;
+USE wit;
+SELECT CURRENT_USER();
+
+CREATE TABLE IF NOT EXISTS categories (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cname VARCHAR(100) NOT NULL UNIQUE,
+    inserted_by VARCHAR(100) NOT NULL
+);
+
+INSERT INTO categories VALUES (NULL, "Beverage", CURRENT_USER()), (NULL, "Pastry", CURRENT_USER()), (NULL, "Sandwich", CURRENT_USER());
+
+
+SHOW TABLES;
+DESCRIBE categories;
+SELECT * from categories;

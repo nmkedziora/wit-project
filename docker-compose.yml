@@ -15,10 +15,26 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./src/db:/docker-entrypoint-initdb.d
+      - ./src/db/create-db.sql:/docker-entrypoint-initdb.d/create-db.sql
     environment:
       # In a prod-grade setup, password should be passed using secrets management tools like:
       # Docker secrets, AWS Secrets Manager,
       # or environment variables. For example:
       # MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
       MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -uroot -proot -e 'SELECT COUNT(*) as db_exists FROM information_schema.schemata WHERE schema_name = \"wit\";'"]
+      interval: 5s
+      timeout: 90s
+      retries: 5
+      start_period: 5s
+
+
+  xdd:
+    image: mysql/mysql-server:8.0
+    command: ["sh", "-c", "mysql -hdb -uwitadmin -pwitadmin < /docker-entrypoint-initdb.d/create-table.sql"]
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./src/db/create-table.sql:/docker-entrypoint-initdb.d/create-table.sql

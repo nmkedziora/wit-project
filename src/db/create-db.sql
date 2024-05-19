@@ -5,6 +5,8 @@ Creates the 'wit' database and 3 users:
   * witreader with read-only access
 */
 
+SHOW DATABASES;
+
 CREATE DATABASE wit;
 
 CREATE USER 'witadmin'@'%' IDENTIFIED BY 'witadmin';
@@ -15,3 +17,5 @@ GRANT INSERT, UPDATE, DELETE, SELECT ON wit.* TO 'witapp'@'%';
 
 CREATE USER 'witreader'@'%' IDENTIFIED BY 'witreader';
 GRANT SELECT ON wit.* TO 'witreader'@'%';
+
+SHOW DATABASES;
