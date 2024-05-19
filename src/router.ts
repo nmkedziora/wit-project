@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { renderHome } from "./controllers/homeController";
-import { renderCategories } from "./controllers/categoriesController";
+import { renderCategories, renderCategoriesAsync } from "./controllers/categoriesController";
 import { login, renderLogin } from "./controllers/loginController";
 import { renderProductDetails } from "./controllers/productController";
 import { renderProducts } from "./controllers/productsController";
@@ -41,6 +41,9 @@ function routeGetRequest(
     case pathname === "/categories":
       renderCategories(context, request, response);
       break;
+      case pathname === "/categoriesAsync":
+        renderCategoriesAsync(context, request, response);
+        break;
     case pathname === "/login":
       renderLogin(context, request, response);
       break;
