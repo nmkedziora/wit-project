@@ -1,10 +1,10 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { parse } from "node:querystring";
 import { getErrorHtml, getHtml } from "../views/login";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 import { LoginCredentials, findUserByCredentials } from "../models/User";
 import { createSession } from "../models/Session";
-import { createSessionCookie } from "../cookies";
+import { createSessionCookie } from "../services/cookies";
 
 export function renderLogin(
   context: RequestContext,

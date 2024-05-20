@@ -3,8 +3,8 @@ import { getHtml } from "../views/signup";
 import { parse } from "node:querystring";
 import { RawUser, createUser } from "../models/User";
 import { createSession } from "../models/Session";
-import { createSessionCookie } from "../cookies";
-import { RequestContext } from "../context";
+import { createSessionCookie } from "../services/cookies";
+import { RequestContext } from "../services/context";
 
 export function renderSignup(
   context: RequestContext,

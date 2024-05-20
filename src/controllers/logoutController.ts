@@ -1,9 +1,9 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { parse } from "node:querystring";
 import { getHtml } from "../views/login";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 import { deleteSession } from "../models/Session";
-import { deleteSessionCookie } from "../cookies";
+import { deleteSessionCookie } from "../services/cookies";
 
 export function logout(
   context: RequestContext,

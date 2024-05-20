@@ -4,7 +4,7 @@ The purpose of this code is educational - to learn how such frameworks work unde
 */
 
 import { IncomingMessage } from "node:http";
-import { SessionId } from "./models/Session";
+import { SessionId } from "../models/Session";
 
 const SESSION_COOKIE = "sessionId";
 const COOKIES_SEPARATOR = "; ";

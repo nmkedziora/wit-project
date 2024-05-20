@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { getHtml } from "../views/home";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 
 export function renderHome(
   context: RequestContext,

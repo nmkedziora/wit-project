@@ -7,7 +7,7 @@ import { renderProducts } from "./controllers/productsController";
 import { renderSellers } from "./controllers/sellersController";
 import { renderSignup, signup } from "./controllers/signupController";
 import { render404 } from "./controllers/404Controller";
-import { RequestContext } from "./context";
+import { RequestContext } from "./services/context";
 import { logout } from "./controllers/logoutController";
 
 export function routeRequest(

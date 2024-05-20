@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { getProducts } from "../models/Product";
 import { getHtml } from "../views/products";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 
 export async function renderProducts(
   context: RequestContext,

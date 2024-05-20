@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { getSellers } from "../models/Seller";
 import { getHtml } from "../views/sellers";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 
 export async function renderSellers(
   context: RequestContext,

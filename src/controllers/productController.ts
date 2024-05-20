@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from "node:http";
 import { ProductId, getProduct } from "../models/Product";
 import { getHtml } from "../views/product";
 import { render404 } from "./404Controller";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 
 export async function renderProductDetails(
   context: RequestContext,

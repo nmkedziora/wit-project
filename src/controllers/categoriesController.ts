@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "node:http";
 import { getCategories } from "../models/Category";
 import { getHtml } from "../views/categories";
-import { RequestContext } from "../context";
+import { RequestContext } from "../services/context";
 
 export async function renderCategories(
   context: RequestContext,

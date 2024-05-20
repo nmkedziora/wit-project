@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { handleRequest } from "./app";
+import { handleRequest } from "./services/app";
 
 // Create a server
 const server = createServer(handleRequest);

@@ -1,9 +1,8 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { routeRequest } from "./router";
-import { getUser } from "./models/User";
-import { getSessionCookie } from "./cookies";
-import { getSession } from "./models/Session";
+import { routeRequest } from "../router";
+import { getSession } from "../models/Session";
 import { RequestContext } from "./context";
+import { getSessionCookie } from "./cookies";
 
 export function handleRequest(
   request: IncomingMessage,
