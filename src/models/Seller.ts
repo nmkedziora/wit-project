@@ -1,4 +1,11 @@
+import { query } from "../services/db";
+
 export type SellerId = number;
+
+interface RawSeller {
+  id: number;
+  sname: string;
+}
 
 export class Seller {
   id: SellerId;
@@ -10,20 +17,16 @@ export class Seller {
   }
 }
 
-const sellers: Seller[] = [
-  new Seller(4004, "Tea Time"),
-  new Seller(2002, "Sandwich Haven"),
-  new Seller(1001, "Bake Masters"),
-  new Seller(7007, "Boost Bar"),
-  new Seller(6006, "Sweet Treats"),
-  new Seller(5005, "Bacon Delights"),
-  new Seller(3003, "Yummy Bakery"),
-];
-
-export function getSellers() {
-  return sellers;
+export async function getSellers(): Promise<Seller[]> {
+  return query(`SELECT * FROM sellers;`, (results: RawSeller[]) =>
+    results.map((result) => new Seller(result.id, result.sname)),
+  );
 }
 
-export function getSeller(id: SellerId): Seller | undefined {
-  return sellers.find((seller) => seller.id === id);
+export async function getSeller(id: SellerId): Promise<Seller | null> {
+  return query(
+    `SELECT * FROM sellers WHERE id=${id}`,
+    (results: RawSeller[]) =>
+      results.length ? new Seller(results[0].id, results[0].sname) : null,
+  );
 }

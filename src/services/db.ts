@@ -30,7 +30,7 @@ export async function query<T>(
   callback: (results: any) => T,
 ): Promise<T> {
   return new Promise((resolve, reject) => {
-    console.log("Querying DB with", `'${sql}'`);
+    console.log("Querying DB with:", `'${sql}'`);
 
     pool.query(sql, function (error, results, fields) {
       // A very naive and optimistic approach without validation and error handling
@@ -38,6 +38,7 @@ export async function query<T>(
         reject(error);
       }
 
+      console.log("DB query results:", results);
       const data = callback(results);
 
       resolve(data);

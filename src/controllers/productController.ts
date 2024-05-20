@@ -1,10 +1,10 @@
 import { IncomingMessage, ServerResponse } from "node:http";
-import { Product, ProductId, getProduct } from "../models/Product";
+import { ProductId, getProduct } from "../models/Product";
 import { getHtml } from "../views/product";
 import { render404 } from "./404Controller";
 import { RequestContext } from "../context";
 
-export function renderProductDetails(
+export async function renderProductDetails(
   context: RequestContext,
   request: IncomingMessage,
   response: ServerResponse,
@@ -18,7 +18,7 @@ export function renderProductDetails(
   }
 
   const productId = toProductId(id);
-  const product: Product | null = getProduct(productId);
+  const product = await getProduct(productId);
 
   if (!product) {
     render404(request, response);

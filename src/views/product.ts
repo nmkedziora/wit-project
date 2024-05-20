@@ -23,8 +23,8 @@ function getContent(product: Product): string {
   return `
     <div style="border:1px solid grey; margin-bottom:25px">
       <h3 style="margin-bottom:0">${product.name}</h3>
-      <p style="margin-top:0">Price: ${product.pricePLN} PLN</p>
-      <p>${product.description}</p>
+      <p style="margin-top:0">Price: ${product.price} ${product.currency}</p>
+      <p>${product.info}</p>
     </div>
     <a href="/products">⬅ get back to products list</a>
   `;
